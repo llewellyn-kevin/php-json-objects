@@ -1,0 +1,13 @@
+{
+    "name": "llewellyn-kevin/php-json-objects",
+    "description": "Transform JSON into Data Objects and vice-versa",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LlewellynKevin\\JsonObjects\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2"
+    }
+}
