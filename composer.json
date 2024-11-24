@@ -3,6 +3,9 @@
     "description": "Transform JSON into Data Objects and vice-versa",
     "license": "MIT",
     "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
         "psr-4": {
             "LlewellynKevin\\JsonObjects\\": "src/"
         }
