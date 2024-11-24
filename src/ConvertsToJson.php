@@ -43,7 +43,7 @@ trait ConvertsToJson
 
             /** @var JsonAttribute */
             $jsonAttribute = $attributes[0]->newInstance();
-            data_set($output, explode('|', $jsonAttribute->label)[0], $serializedValue);
+            array_dot_set($output, explode('|', $jsonAttribute->label)[0], $serializedValue);
         }
         return $output;
     }
@@ -55,13 +55,13 @@ trait ConvertsToJson
 
         foreach ($map as $jsonLabels => $propData) {
             foreach (explode('|', $jsonLabels) as $jsonLabel) {
-                if (is_null(data_get($data, $jsonLabel))) {
+                if (is_null(array_dot_get($data, $jsonLabel))) {
                     continue;
                 }
 
                 [$propertyName, $className, $arrayClass] = $propData;
                 if (!is_null($arrayClass)) {
-                    $propertyVal = data_get($data, $jsonLabel);
+                    $propertyVal = array_dot_get($data, $jsonLabel);
                     if (!is_array($propertyVal)) {
                         throw new Exception("Element at key '$jsonLabel' expects array of $arrayClass. Did not get array. Got '$propertyVal'.");
                     }
@@ -69,10 +69,10 @@ trait ConvertsToJson
                     foreach ($propertyVal as $subObject) {
                         $obj->$propertyName[] = $arrayClass::fromArray($subObject);
                     }
-                } else if (!$className || !is_array(data_get($data, $jsonLabel))) {
-                    $obj->$propertyName = data_get($data, $jsonLabel);
+                } else if (!$className || !is_array(array_dot_get($data, $jsonLabel))) {
+                    $obj->$propertyName = array_dot_get($data, $jsonLabel);
                 } else {
-                    $obj->$propertyName = $className::fromArray(data_get($data, $jsonLabel));
+                    $obj->$propertyName = $className::fromArray(array_dot_get($data, $jsonLabel));
                 }
             }
         }
