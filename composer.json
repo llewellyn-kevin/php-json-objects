@@ -9,5 +9,16 @@
     },
     "require": {
         "php": ">=8.2"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest --parallel"
     }
 }
