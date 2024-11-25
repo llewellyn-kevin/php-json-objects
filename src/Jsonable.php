@@ -6,7 +6,7 @@ interface Jsonable
 {
     public function toJson(): string;
 
-    public function fromJson(): self;
+    public static function fromJson(string $data): self;
 
     public function toArray(): array;
 

@@ -3,7 +3,8 @@
 namespace LlewellynKevin\JsonObjects;
 
 use Attribute;
-use Exception;
+use InvalidArgumentException;
+use LlewellynKevin\JsonObjecs\Exceptions\InvalidNestedClass;
 
 #[Attribute]
 class JsonAttribute
@@ -23,11 +24,11 @@ class JsonAttribute
         }
 
         if (!class_exists($arrayElements)) {
-            throw new Exception("JsonAttribute argument arrayElements be a valid fqn.");
+            throw new InvalidArgumentException("JsonAttribute argument arrayElements be a valid fqn.");
         }
 
         if (!class_implements($arrayElements, Jsonable::class)) {
-            throw new Exception("JsonAttribute argument arrayElements field must implement Jsonable.");
+            throw new InvalidNestedClass("JsonAttribute argument arrayElements field must implement Jsonable.");
         }
     }
 }
