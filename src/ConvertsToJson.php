@@ -19,7 +19,7 @@ trait ConvertsToJson
         return json_encode($this->toArray());
     }
 
-    public static function fromJson(string $json): self
+    public static function fromJson(string $json): static
     {
         return static::fromArray(json_decode($json, true));
     }
